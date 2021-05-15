@@ -1,0 +1,7 @@
+{
+  "name": "dominion_main",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

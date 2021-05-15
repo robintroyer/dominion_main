@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Blank</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div id="container">
+        <div id="main">
+            <h1>Dominion 2</h1>
+            <div id="inputArea">
+                <form [formGroup]="form">
+                    <ng-container formArrayName="players">
+                      <ion-list [formGroupName]="i" *ngFor="let player of form.controls.players.controls; let i = index">
+                        <ion-item>
+                          <ion-input placeholder="Player {{ i + 1 }}" formControlName="firstname"></ion-input>
+                        </ion-item>
+                      </ion-list>
+                      <ion-button color="success" (click)="addPlayer()">
+                          Spieler hinzufügen
+                      </ion-button>
+                      <ion-button color="danger" (click)="startGame()">
+                        Find Match!
+                      </ion-button>
+                    </ng-container>
+                  </form>
+
+            </div>
+            <!-- <ion-button id="startButton" color="danger">Start</ion-button> -->
+        </div>
+
+      
+    </div>
+</ion-content>
