@@ -2,12 +2,22 @@
   
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content id="ion_body" [fullscreen]="true">
     <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">Blank</ion-title>
       </ion-toolbar>
     </ion-header>
+
+
+
+    <div id="options_background">
+        <div (click)="openOptions()">Einstellungen</div>
+        <div (click)="openOverview()">Karten</div>
+        <div (click)="openBrowse()">Stöbern</div>
+        <div>lorem ipsum</div>
+    </div>
+
 
     <div id="container">
         <div id="main">
@@ -30,9 +40,10 @@
                   </form>
 
             </div>
-            <!-- <ion-button id="startButton" color="danger">Start</ion-button> -->
         </div>
 
-      
+        <ion-button (click)="expandOptions()" id="options_button">
+            <ion-icon name="arrow-up-outline"></ion-icon>
+        </ion-button>
     </div>
 </ion-content>

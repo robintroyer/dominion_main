@@ -1,0 +1,51 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content>
+
+    <div id="container">
+
+        <div id="main">
+
+            <h1>neue Karte</h1>
+
+            <h2>Titel</h2>
+
+            <ion-item id="card_title_input">
+                <ion-input [(ngModel)]="this.title"></ion-input>
+            </ion-item>
+
+            <h2>Spieleranzahl</h2>
+
+            <ion-item id="card_playeramount_input">
+                <ion-input (ionChange)="checkPlayerAmount()" [(ngModel)]="this.playeramount" type="number"></ion-input>
+            </ion-item>
+
+            <ion-button size="small" class="player_button" *ngFor="let number of playeramount_array" (click)="appendPlayername(number)">PLAYERNAME{{number}}</ion-button>
+
+
+            <h2>Aufgabe</h2>
+
+            <ion-item id="card_task_input">
+                <ion-textarea #textarea_task [(ngModel)]="this.task" (ionFocus)="showButtons()" (ionBlur)="hideButtons()" autoGrow="true">
+
+                </ion-textarea>
+            </ion-item>
+
+            <ion-button (click)="saveCard()" id="save_button" color="success">Karte speichern</ion-button>
+            <!-- <ion-list >
+                <ion-button *ngIf="this.showButtons">PLAYERNAME1</ion-button>
+            </ion-list> -->
+            <!-- <ion-item> -->
+                <!-- *ngIf="this.show_buttons" -->
+            <!-- </ion-item> -->
+            <!-- <ion-list *ngIf="this.show_buttons">
+                <ion-button>PLAYERNAME1</ion-button>
+            </ion-list> -->
+
+        </div>
+
+    </div>
+
+</ion-content>

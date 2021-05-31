@@ -46,6 +46,31 @@ export class HomePage {
     startGame(){
         
         console.log(this.form.value.players[0].firstname);
+
+        // generate random player(s)
+
+        
+
+        // generate task number
+    }
+
+    expandOptions()
+    {
+        let options_div = document.getElementById('options_background');
+        options_div.className += ' active';
+    }
+
+    openOptions()
+    {
+        this.router.navigate(['/options']);
+    }
+    openOverview()
+    {
+        this.router.navigate(['/overview-main']);
+    }
+    openBrowse()
+    {
+        this.router.navigate(['/browse']);
     }
 
 }
