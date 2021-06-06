@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class Card {
     constructor(title, task, req_players, id?, rev?) {
         this.title = title;
@@ -7,7 +9,7 @@ export class Card {
         if (id) {
             this._id = id;
         } else {
-            // this._id = v5();
+            this._id = uuidv4();
         }
 
         if (rev) {

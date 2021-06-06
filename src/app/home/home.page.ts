@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 
+import PouchDB from 'pouchdb/dist/pouchdb';
+
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
@@ -12,11 +14,18 @@ export class HomePage {
     playersData = []; 
     playerLength: number = 0;
     form: FormGroup;
+
+    local_cards: any;
+    local_decks: any;
+    local_sets: any;
     
     constructor(public formBuilder: FormBuilder, private router: Router) {
         this.form = formBuilder.group({
             players: new FormArray([])
         });
+        this.local_cards = new PouchDB('local_cards');
+        this.local_decks = new PouchDB('local_decks');
+        this.local_sets = new PouchDB('local_sets');
     }
     
 
@@ -66,7 +75,14 @@ export class HomePage {
     }
     openOverview()
     {
-        this.router.navigate(['/overview-main']);
+        let extras: NavigationExtras = {
+            state: {
+                local_cards: this.local_cards,
+                local_decks: this.local_decks,
+                local_sets: this.local_sets
+            }
+        };
+        this.router.navigate(['/overview-main'], extras);
     }
     openBrowse()
     {

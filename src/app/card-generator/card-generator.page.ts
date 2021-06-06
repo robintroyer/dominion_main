@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/models/Card';
-import * as v5 from 'uuid';
+// import * as v5 from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+
+import PouchDB from 'pouchdb/dist/pouchdb';
 
 @Component({
   selector: 'app-card-generator',
@@ -15,7 +18,14 @@ export class CardGeneratorPage implements OnInit {
     title: any;
     task: any;
 
-    constructor() { }
+    db: any;
+
+    cards: any[];
+
+    constructor() {
+        this.db = new PouchDB('local_cards');
+        this.cards = [];
+    }
 
     ngOnInit() {
     }
@@ -71,7 +81,7 @@ export class CardGeneratorPage implements OnInit {
         // refocus textarea
 
     }
-    saveCard()
+    async saveCard()
     {
         // console.log(this.task);
 
@@ -81,10 +91,24 @@ export class CardGeneratorPage implements OnInit {
 
         // playeramount 0 equals none
 
-        let card = new Card(this.title, this.task, this.playeramount);
-        let a = v5();
+        let card_id = uuidv4();
+        let card = new Card(this.title, this.task, this.playeramount, card_id);
+        await this.db.post({
+            _id: card_id,
+            title: this.title,
+            task: this.task,
+            playeramount: this.playeramount
+        });
+
+        this.cards.push(card);
+        // this.db.put(card);
+        // this.db.put({
+        //     test: 'abc',
+        //     alge: 'afafien'
+        // });
+        // let a = uuidv4();
         
-        console.log(a);
+        // console.log(a);
     }
 
 }
