@@ -6,11 +6,15 @@
 
     <div id="container">
         <div id="main">
-
+            <ion-label>{{current_task_filled.title}}</ion-label>
+            <div class="underline"></div>
+            <ion-text>
+                {{current_task_filled.task}}
+            </ion-text>
         </div>
 
     </div>
-    <ion-button id="nextCardButton" color="danger">Nächste Karte</ion-button>
+    <ion-button (click)="nextCard()" id="nextCardButton" color="danger">Nächste Karte</ion-button>
 
 
 </ion-content>

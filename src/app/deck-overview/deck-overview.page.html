@@ -7,7 +7,17 @@
     <div id="container">
 
         <div id="main">
-          
+            <p *ngIf="!decks">Keine Decks vorhanden</p>
+            <h2>Decks</h2>
+            <div *ngIf="decks">
+                <div class="deck" *ngFor="let deck of decks; let i = index">
+                    <div>
+                        <ion-label>{{deck.doc.title}}</ion-label>
+                    </div>
+                    <ion-toggle [(ngModel)]="state[i]"></ion-toggle>
+                </div>
+            </div>
+            <div id="addDeckButton" (click)="openDeckGenerator()">+</div>
         </div>
 
     </div>

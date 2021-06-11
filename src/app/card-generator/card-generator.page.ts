@@ -4,6 +4,7 @@ import { Card } from 'src/models/Card';
 import { v4 as uuidv4 } from 'uuid';
 
 import PouchDB from 'pouchdb/dist/pouchdb';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-generator',
@@ -22,7 +23,7 @@ export class CardGeneratorPage implements OnInit {
 
     cards: any[];
 
-    constructor() {
+    constructor(private router: Router) {
         this.db = new PouchDB('local_cards');
         this.cards = [];
     }
@@ -85,6 +86,15 @@ export class CardGeneratorPage implements OnInit {
     {
         // console.log(this.task);
 
+        // check if input is valid
+
+        // if (
+        //     this.title != undefined
+        //     && this.task != undefined
+        // ) {
+        //     console.log('foi de alge');
+        // }
+
         console.log(this.title);
         console.log(this.playeramount);
         console.log(this.task);
@@ -92,12 +102,13 @@ export class CardGeneratorPage implements OnInit {
         // playeramount 0 equals none
 
         let card_id = uuidv4();
-        let card = new Card(this.title, this.task, this.playeramount, card_id);
+        let card = new Card(this.title, this.task, this.playeramount, 1, card_id);
         await this.db.post({
             _id: card_id,
             title: this.title,
             task: this.task,
-            playeramount: this.playeramount
+            playeramount: this.playeramount,
+            active: 1
         });
 
         this.cards.push(card);
@@ -109,6 +120,9 @@ export class CardGeneratorPage implements OnInit {
         // let a = uuidv4();
         
         // console.log(a);
+
+        // go back to card-overview
+        this.router.navigate(['/card-overview']);
     }
 
 }

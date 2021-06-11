@@ -1,0 +1,29 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content>
+
+    <div id="container">
+
+        <div id="main">
+            <h1>neues Deck</h1>
+            <h2>Titel</h2>
+            <ion-item id="deck_title_input">
+                <ion-input [(ngModel)]="this.title"></ion-input>
+            </ion-item>
+            <!-- select with all cards -->
+            <ion-item id="deck_cards_select">
+                <ion-select (ionChange)="selectChanged()" [(ngModel)]="selected_cards" multiple="true" placeholder="Karten auswählen">
+                    <!-- <ion-select-option></ion-select-option> -->
+                    <ion-select-option [value]="card" *ngFor="let card of cards">{{card.doc.title}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            
+            <ion-button color="success" (click)="saveDeck()">Speichern</ion-button>
+
+        </div>
+
+    </div>
+
+</ion-content>

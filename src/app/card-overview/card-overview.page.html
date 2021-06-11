@@ -9,6 +9,27 @@
         <div id="main">
 
             <p *ngIf="!cards">Keine Karten vorhanden.</p>
+            <h2>Karten</h2>
+            <div *ngIf="cards">
+                <div class="card" *ngFor="let card of cards; let i = index">
+
+                    <div>
+                        <ion-label>{{card.doc.title}}</ion-label>
+                        <span>{{card.doc.task}}</span>
+                        <!-- <ion-toggle></ion-toggle> -->
+                    </div>
+    
+                    <!-- ngmodel = active variable -->
+    
+                    <!-- <ion-toggle [(ngModel)]="{{card.doc.active}}"></ion-toggle> -->
+                    <!-- <ion-toggle [(ngModel)]="1"></ion-toggle> -->
+                    <ion-toggle [(ngModel)]="state[i]"></ion-toggle>
+                    <!-- <p>{{card.doc.title}}</p> -->
+                    
+    
+                </div>
+            </div>
+            
 
             <div id="addCardButton" (click)="openCardGenerator()">+</div>
         

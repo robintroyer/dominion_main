@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'game',
     loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
-  },  {
+  },
+  {
     path: 'list',
     loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
   },
@@ -49,6 +50,22 @@ const routes: Routes = [
   {
     path: 'card-generator',
     loadChildren: () => import('./card-generator/card-generator.module').then( m => m.CardGeneratorPageModule)
+  },
+  {
+    path: 'card-configuration',
+    loadChildren: () => import('./card-configuration/card-configuration.module').then( m => m.CardConfigurationPageModule)
+  },
+  {
+    path: 'terms-overview',
+    loadChildren: () => import('./terms-overview/terms-overview.module').then( m => m.TermsOverviewPageModule)
+  },
+  {
+    path: 'terms-generator',
+    loadChildren: () => import('./terms-generator/terms-generator.module').then( m => m.TermsGeneratorPageModule)
+  },
+  {
+    path: 'deck-generator',
+    loadChildren: () => import('./deck-generator/deck-generator.module').then( m => m.DeckGeneratorPageModule)
   },
 
 ];

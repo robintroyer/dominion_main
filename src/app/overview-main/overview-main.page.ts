@@ -10,18 +10,18 @@ import PouchDB from 'pouchdb/dist/pouchdb';
 })
 export class OverviewMainPage implements OnInit {
 
-  local_cards: any;
-  local_decks: any;
-  local_sets: any;
+//   local_cards: any;
+//   local_decks: any;
+//   local_sets: any;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-      this.route.queryParams.subscribe(params => {
-          if (this.router.getCurrentNavigation().extras.state) {
-              this.local_cards = this.router.getCurrentNavigation().extras.state.local_cards;
-              this.local_decks = this.router.getCurrentNavigation().extras.state.local_decks;
-              this.local_sets = this.router.getCurrentNavigation().extras.state.local_sets;
-          }
-      })
+    //   this.route.queryParams.subscribe(params => {
+    //       if (this.router.getCurrentNavigation().extras.state) {
+    //           this.local_cards = this.router.getCurrentNavigation().extras.state.local_cards;
+    //           this.local_decks = this.router.getCurrentNavigation().extras.state.local_decks;
+    //           this.local_sets = this.router.getCurrentNavigation().extras.state.local_sets;
+    //       }
+    //   })
   }
 
   ngOnInit() {
