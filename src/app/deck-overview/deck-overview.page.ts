@@ -14,7 +14,7 @@ export class DeckOverviewPage implements OnInit {
     local_decks: any;
     state: any[];
     old_state: any[];
-    db_result: any[]
+    db_result: any;
 
     constructor(private router: Router) {
         this.state = [];
@@ -36,6 +36,37 @@ export class DeckOverviewPage implements OnInit {
         }
         console.log(this.decks);
         console.log(this.state);
+    }
+
+    async ionViewWillLeave()
+    {
+        let changed_state = [];
+        for (let i = 0; i < this.state.length; i++) {
+            if (this.state[i] == this.old_state[i]) {
+
+            } else {
+                changed_state.push(i);
+            }
+        }
+        console.log(changed_state);
+
+        for (let i = 0; i < changed_state.length; i++) {
+            let change_to: any;
+            if (this.db_result.rows[changed_state[i]].doc.active == 1) {
+                change_to = 0;
+            } else if (this.db_result.rows[changed_state[i]].doc.active == 0) {
+                change_to = 1;
+            }
+            let changed_deck = {
+                _id: this.db_result.rows[changed_state[i]].doc._id,
+                _rev: this.db_result.rows[changed_state[i]].doc._rev,
+                title: this.db_result.rows[changed_state[i]].doc.title,
+                cards: this.db_result.rows[changed_state[i]].doc.cards,
+                active: change_to,
+            }
+            this.local_decks.put(changed_deck);
+            console.log(changed_deck);
+        }
     }
 
     openDeckGenerator()
