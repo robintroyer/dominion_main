@@ -201,7 +201,7 @@ export class HomePage {
                 possible_cards: possible_cards
             }
         }
-        // this.router.navigate(['/game'], extras);
+        this.router.navigate(['/game'], extras);
 
         // generate random player(s)
 

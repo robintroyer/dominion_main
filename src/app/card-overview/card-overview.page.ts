@@ -44,7 +44,8 @@ export class CardOverviewPage implements OnInit {
 
     }
 
-    async ionViewWillLeave()
+    // async ionViewWillLeave()
+    async saveChanges()
     {
         // update whether cards are actived or not
 
@@ -93,6 +94,8 @@ export class CardOverviewPage implements OnInit {
             // this.local_cards.put
             
         }
+
+        this.router.navigate(['../']);
     }
 
 
