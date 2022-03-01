@@ -4,7 +4,10 @@ import { NavigationExtras, Router } from '@angular/router';
 
 import PouchDB from 'pouchdb/dist/pouchdb';
 
+import { SimplebarAngularModule } from 'simplebar-angular';
+
 import * as _ from 'lodash';
+import * as SimpleBar from 'simplebar';
 
 @Component({
     selector: 'app-home',
@@ -31,6 +34,8 @@ export class HomePage {
         this.addPlayer();
         this.addPlayer();
         this.addPlayer();
+
+        // new SimpleBar(document.getElementById('test_simplebar'));
     }
     
 
@@ -214,6 +219,11 @@ export class HomePage {
     {
         let options_div = document.getElementById('options_background');
         options_div.className += ' active';
+    }
+    closeOptions()
+    {
+        let options_div = document.getElementById('options_background');
+        options_div.classList.remove('active');
     }
 
     openOptions()

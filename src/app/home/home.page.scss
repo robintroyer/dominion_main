@@ -4,6 +4,8 @@
 //   overflow: hidden;
 // }
 
+
+
 #container {
   text-align: center;
 
@@ -84,9 +86,10 @@
     margin-bottom: 25px;
   }
   div#close {
-    background-color: darkred;
-    border-radius: 32px;
-    width: 35px;
+    background-color: #FE2202;
+    border-radius: 50%;
+    // width: 35px;
+    width: auto;
     height: auto;
 }
 }
@@ -106,6 +109,10 @@
   // margin: auto;
   // bottom: 10%;
 
+}
+
+.card {
+  // margin-right: 0px !important;
 }
 
 #main {

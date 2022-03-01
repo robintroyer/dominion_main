@@ -10,9 +10,8 @@
 
             <p *ngIf="!cards">Keine Karten vorhanden.</p>
             <h2>Karten</h2>
-            <div *ngIf="cards">
+            <div *ngIf="cards" id="cards_area">
                 <div class="card" *ngFor="let card of cards; let i = index">
-
                     <div>
                         <ion-label>{{card.doc.title}}</ion-label>
                         <span>{{card.doc.task}}</span>
@@ -25,14 +24,28 @@
                     <!-- <ion-toggle [(ngModel)]="1"></ion-toggle> -->
                     <ion-toggle [(ngModel)]="state[i]"></ion-toggle>
                     <!-- <p>{{card.doc.title}}</p> -->
-                    
-    
+                    <!-- <svg (click)="deleteCard(card)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg> -->
                 </div>
             </div>
             
             <ion-button (click)="saveChanges()" id="save">Speichern</ion-button>
 
-            <div id="addCardButton" (click)="openCardGenerator()">+</div>
+            <div id="button_container">
+                <a id="download_cards" (click)="downloadCards()" download="download.json" [href]="downloaded_json">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 19h18v2H3v-2zm10-5.828L19.071 7.1l1.414 1.414L12 17 3.515 8.515 4.929 7.1 11 13.17V2h2v11.172z"/></svg>
+                </a>
+                <label for="upload_cards" id="cards_upload_label">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z"/></svg>
+                    <!-- abc -->
+                </label>
+                <input type="file" id="upload_cards" (change)="fileUploaded($event.target.files)" name="file">
+        
+                <div id="addCardButton" (click)="openCardGenerator()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+                </div>
+            </div>
+
+            
         
         </div>
 

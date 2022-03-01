@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import PouchDB from 'pouchdb/dist/pouchdb';
+import { Card } from 'src/models/Card';
 
 @Component({
   selector: 'app-card-overview',
@@ -16,12 +18,19 @@ export class CardOverviewPage implements OnInit {
     old_state: any[];
     db_result: any;
 
-    constructor(private router: Router) {
+    downloaded_json: any;
+    uploaded_json: any;
+
+    constructor(private router: Router, private sanitizer: DomSanitizer) {
         this.state = [];
         this.old_state = [];
     }
 
-    async ngOnInit() {
+    ngOnInit(): void {
+        
+    }
+
+    async ionViewWillEnter() {
         this.local_cards = new PouchDB('local_cards');
         this.cards = [];
         var result = await this.local_cards.allDocs({
@@ -102,6 +111,94 @@ export class CardOverviewPage implements OnInit {
     openCardGenerator()
     {
         this.router.navigate(['/card-generator']);
+    }
+
+    deleteCard(card: any)
+    {
+        // delete card with matching id
+    
+        // console.log(this.cards);
+        // console.log(this.local_cards);
+        // console.log(this);
+        // console.log(card);
+        let pos = this.cards.findIndex((p) => {
+            return p.id == card.id;
+        });
+        if (pos > -1) {
+            this.cards.splice(pos, 1);
+        }
+    }
+
+    downloadCards()
+    {
+        // download all cards as json, which can be imported later (on another/same device)
+        let json = JSON.stringify(this.cards);
+        console.log(this.cards);
+        var uri = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(json));
+        this.downloaded_json = uri;
+    }
+    fileUploaded(files)
+    {
+        // upload json to import cards - so far only one json should be selected at a time, iterate for multiple
+        // console.log('abc');
+        // this.uploaded_json = files.item(0);
+        // console.log(this.uploaded_json);
+        let filereader = new FileReader();
+        let a = '';
+        
+        // console.log(filereader.readAsText(this.uploaded_json));
+        filereader.addEventListener('load', () => {
+            // console.log(filereader.result);
+            this.uploaded_json = filereader.result;
+            this.addFileToDB(this.uploaded_json);
+            // console.log(this.uploaded_json);
+            // return filereader.result;
+        });
+
+        // console.log(files[0]);
+
+        if (files) {
+            this.uploaded_json = filereader.readAsText(files[0]);
+            // console.log(this.uploaded_json);
+        }
+
+        // console.log(this.uploaded_json);
+        
+    }
+    async addFileToDB(json)
+    {
+        json = JSON.parse(json);
+        console.log(json);
+        // connect to db and store json
+        let db = new PouchDB('local_cards');
+        for (let i = 0; i < json.length; i ++) {
+            // console.log(json[i].doc);
+            let card = new Card(json[i].doc.title, json[i].doc.task, json[i].doc.playeramount, json[i].doc.id)
+            console.log(card);
+            await db.post({
+                _id: json[i].doc.id,
+                title: json[i].doc.title,
+                task: json[i].doc.task,
+                playeramount: json[i].doc.playeramount,
+                active: 1
+            });
+        }
+        this.cards = [];
+        var result = await this.local_cards.allDocs({
+            include_docs: true
+        });
+        this.db_result = result;
+        // console.log(result.rows[0]);
+        // result.row.forEach(element => {
+        //     this.cards.push(element);
+        // });
+        for (let i = 0; i < result.rows.length; i++) {
+          // console.log('a');
+            // console.log(result.rows[i]);
+            this.cards.push(result.rows[i]);
+            this.state.push(result.rows[i].doc.active);
+            this.old_state.push(result.rows[i].doc.active);
+        }
     }
 
 
