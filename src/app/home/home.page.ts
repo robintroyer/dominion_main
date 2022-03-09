@@ -206,6 +206,7 @@ export class HomePage {
                 possible_cards: possible_cards
             }
         }
+        console.log(players);
         this.router.navigate(['/game'], extras);
 
         // generate random player(s)
@@ -245,6 +246,15 @@ export class HomePage {
     openBrowse()
     {
         this.router.navigate(['/browse']);
+    }
+
+    removePlayer(playerindex)
+    {
+        console.log('removing player ' + (playerindex + 1));
+        this.playerLength--;
+        console.log(this.form.controls.players);
+        this.form.controls.players['controls'].splice(playerindex, 1);
+        console.log(this.form.controls.players);
     }
 
 }
