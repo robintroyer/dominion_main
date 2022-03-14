@@ -141,17 +141,50 @@
     
     h1 {
         font-size: 38px;
+        color: black;
+    }
+
+    
+    form {
+        // margin-left: 20px;
+        // margin-right: 20px;
+        ion-list {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-top: 0px;
+            padding-bottom: 5px;
+            background-color: #f2f2f2;
+
+        }
+        ion-item {
+            border: 1px solid black;
+        }
         
     }
 
+    ion-input {
+        // background-color: red;
+        // color: #353535
+    }
+    div.item-native {
+        // background-color: red !important;
+    }
+    ion-item.item-input {
+        // background-color: red !important;
+    }
+
+    
+    
+
     #inputArea {
-        background-color: #e8e8e8;
+        // background-color: #e8e8e8;
         height: 80%;
         overflow-y: auto;
         // overflow-y: hidden;
         
         .playerInput {
             text-align: center;
+            
         }
     }
     #startButton {

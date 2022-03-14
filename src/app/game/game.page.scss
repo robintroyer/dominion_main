@@ -68,6 +68,7 @@
 
     ion-label {
       font-size: 24px;
+      color: black;
     }
 
     .underline {
@@ -81,8 +82,9 @@
       margin-bottom: 10%;
     }
 
-    .ion-text {
-      margin-top: 10%;
+    ion-text {
+    //   margin-top: 10%;
+      color: black;
     }
     
     h1 {
