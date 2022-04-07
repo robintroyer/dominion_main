@@ -40,4 +40,9 @@ export class OverviewMainPage implements OnInit {
       this.router.navigate(['/card-overview']);
   }
 
+  closeOverview()
+  {
+      this.router.navigate(['./home']);
+  }
+
 }

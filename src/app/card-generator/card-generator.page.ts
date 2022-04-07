@@ -125,4 +125,9 @@ export class CardGeneratorPage implements OnInit {
         this.router.navigate(['/card-overview']);
     }
 
+    closeGen() 
+    {
+        this.router.navigate(['./card-overview']);
+    }
+
 }

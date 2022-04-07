@@ -51,7 +51,7 @@ export class GamePage implements OnInit {
         console.log(this.possible_cards);
 
         this.current_task_filled = Object.create(this.current_task);
-
+        console.log(this.current_task);
         if (this.current_task.playeramount > 0) {
             this.current_task_filled.task = this.replacePlayername(this.current_task_filled.task, this.current_task_filled.playeramount, this.shuffled_array);
         }
@@ -63,8 +63,11 @@ export class GamePage implements OnInit {
     replacePlayername(task: string, amount: number, array)
     {
         let task_copy = task;
+        console.log(amount);
         for (let i = 1; i <= amount; i++) {
+            console.log(array);
             task_copy = task_copy.replace('PLAYERNAME' + i + '', array[i - 1].firstname);
+            console.log(task_copy);
         }
         
         return task_copy;

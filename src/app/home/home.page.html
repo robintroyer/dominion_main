@@ -16,7 +16,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
         </div>
         <!-- <div (click)="openOptions()">Einstellungen</div> -->
-        <div (click)="openOverview()">Karten</div>
+        <div class="options_buttons" (click)="openOverview()">Karten</div>
         <!-- <div (click)="openBrowse()">Stöbern</div> -->
         <!-- <div>lorem ipsum</div> -->
     </div>
@@ -35,10 +35,10 @@
                           <svg (click)="removePlayer(i)" *ngIf="i > 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
                         </ion-item>
                       </ion-list>
-                      <ion-button color="success" (click)="addPlayer()">
+                      <ion-button class="mainbutton" color="success" (click)="addPlayer()">
                           Spieler hinzufügen
                       </ion-button>
-                      <ion-button color="danger" (click)="startGame()">
+                      <ion-button class="mainbutton" color="danger" (click)="startGame()">
                         Find Match!
                       </ion-button>
                     </ng-container>

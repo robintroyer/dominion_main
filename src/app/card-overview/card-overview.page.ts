@@ -205,6 +205,10 @@ export class CardOverviewPage implements OnInit {
         }
     }
 
+    closeOverview() {
+        this.router.navigate(['./overview-main']);
+    }
+
     async importOriginalCards()
     {
         // console.log('abc');
@@ -563,7 +567,7 @@ export class CardOverviewPage implements OnInit {
             {
                 title: "Runaan's Hurrican",
                 task: "Person links, rechts und gegenüber von PLAYERNAME1 trinken 1 Schluck.",
-                playeramount: 0,
+                playeramount: 1,
                 active: 1
             },
             {
@@ -671,7 +675,7 @@ export class CardOverviewPage implements OnInit {
             {
                 title: "Guess the Song",
                 task: "PLAYERNAME1 sucht für PLAYERNAME2 und PLAYERNAME3 einen Song aus, der als erster den Song errät, verteilt 3 Schlücke.",
-                playeramount: 1,
+                playeramount: 3,
                 active: 1
             },
             {
@@ -803,19 +807,19 @@ export class CardOverviewPage implements OnInit {
             {
                 title: "Schere, Stein, Papier",
                 task: "Der mit der höchsten und der mit der niedrigsten Elo spielen eine Runde Schere, Stein, Papier. Der Gewinner verteilt 5 Schlücke.",
-                playeramount: 1,
+                playeramount: 0,
                 active: 1
             },
             {
                 title: "Schere, Stein, Papier",
                 task: "Die jüngste und die älteste Person spielen eine Runde Schere, Stein, Papier. Der Gewinner verteilt 5 Schlücke.",
-                playeramount: 1,
+                playeramount: 0,
                 active: 1
             },
             {
                 title: "Wahrheit oder Pflicht",
                 task: "PLAYERNAME1 stellt PLAYERNAME2 eine Aufgabe/Frage. Wenn er sich weigert trinkt er 4 Schlücke.",
-                playeramount: 1,
+                playeramount: 2,
                 active: 1
             },
             // some new cards

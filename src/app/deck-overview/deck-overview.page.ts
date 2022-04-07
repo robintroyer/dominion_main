@@ -74,6 +74,11 @@ export class DeckOverviewPage implements OnInit {
         this.router.navigate(['/deck-generator']);
     }
 
+    closeOverview()
+    {
+        this.router.navigate(['./overview-main']);
+    }
+
     
 
 }
