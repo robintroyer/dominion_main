@@ -34,8 +34,6 @@ export class DeckOverviewPage implements OnInit {
             this.state.push(result.rows[i].doc.active);
             this.old_state.push(result.rows[i].doc.active);
         }
-        console.log(this.decks);
-        console.log(this.state);
     }
 
     async ionViewWillLeave()
@@ -48,7 +46,6 @@ export class DeckOverviewPage implements OnInit {
                 changed_state.push(i);
             }
         }
-        console.log(changed_state);
 
         for (let i = 0; i < changed_state.length; i++) {
             let change_to: any;
@@ -65,7 +62,6 @@ export class DeckOverviewPage implements OnInit {
                 active: change_to,
             }
             this.local_decks.put(changed_deck);
-            console.log(changed_deck);
         }
     }
 

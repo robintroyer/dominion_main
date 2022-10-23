@@ -39,19 +39,11 @@ export class CardOverviewPage implements OnInit {
             include_docs: true
         });
         this.db_result = result;
-        // console.log(result.rows[0]);
-        // result.row.forEach(element => {
-        //     this.cards.push(element);
-        // });
         for (let i = 0; i < result.rows.length; i++) {
-          // console.log('a');
-            // console.log(result.rows[i]);
             this.cards.push(result.rows[i]);
             this.state.push(result.rows[i].doc.active);
             this.old_state.push(result.rows[i].doc.active);
         }
-        console.log(this.cards);
-        console.log(this.state);
 
         this.importOriginalCards();
 
@@ -72,19 +64,8 @@ export class CardOverviewPage implements OnInit {
                 changed_state.push(i);
             }
         }
-        console.log(changed_state);
 
         for (let i = 0; i < changed_state.length; i++) {
-            // let changed = await this.local_cards.put({
-            //     _id: this.db_result.rows[changed_state[i]].doc._id,
-            //     _rev: this.db_result.rows[changed_state[i]].doc.rev,
-
-            //     title: this.db_result.rows[changed_state[i]].doc.title,
-            //     task: this.db_result.rows[changed_state[i]].doc.task,
-            //     active: this.db_result.rows[changed_state[i]].doc.active,
-            //     playeramount: this.db_result.rows[changed_state[i]].doc.playeramount
-            // });
-            // console.log('aktiv' + this)
 
             // set to 0 or to 1
             let change_to: any;
@@ -103,9 +84,6 @@ export class CardOverviewPage implements OnInit {
                 playeramount: this.db_result.rows[changed_state[i]].doc.playeramount
             };
             this.local_cards.put(changed_card);
-            console.log(changed_card);
-            // this.local_cards.put
-            
         }
 
         this.router.navigate(['../']);
@@ -120,11 +98,6 @@ export class CardOverviewPage implements OnInit {
     deleteCard(card: any)
     {
         // delete card with matching id
-    
-        // console.log(this.cards);
-        // console.log(this.local_cards);
-        // console.log(this);
-        // console.log(card);
         let pos = this.cards.findIndex((p) => {
             return p.id == card.id;
         });
@@ -137,48 +110,29 @@ export class CardOverviewPage implements OnInit {
     {
         // download all cards as json, which can be imported later (on another/same device)
         let json = JSON.stringify(this.cards);
-        console.log(this.cards);
         var uri = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(json));
         this.downloaded_json = uri;
     }
     fileUploaded(files)
     {
         // upload json to import cards - so far only one json should be selected at a time, iterate for multiple
-        // console.log('abc');
-        // this.uploaded_json = files.item(0);
-        // console.log(this.uploaded_json);
         let filereader = new FileReader();
         let a = '';
         
-        // console.log(filereader.readAsText(this.uploaded_json));
         filereader.addEventListener('load', () => {
-            // console.log(filereader.result);
             this.uploaded_json = filereader.result;
             this.addFileToDB(this.uploaded_json);
-            // console.log(this.uploaded_json);
-            // return filereader.result;
         });
-
-        // console.log(files[0]);
-
         if (files) {
             this.uploaded_json = filereader.readAsText(files[0]);
-            // console.log(this.uploaded_json);
         }
-
-        // console.log(this.uploaded_json);
-        
     }
     async addFileToDB(json)
     {
         json = JSON.parse(json);
-        console.log(json);
-        // connect to db and store json
         let db = new PouchDB('local_cards');
         for (let i = 0; i < json.length; i ++) {
-            // console.log(json[i].doc);
             let card = new Card(json[i].doc.title, json[i].doc.task, json[i].doc.playeramount, json[i].doc.id)
-            console.log(card);
             await db.post({
                 _id: json[i].doc.id,
                 title: json[i].doc.title,
@@ -192,13 +146,7 @@ export class CardOverviewPage implements OnInit {
             include_docs: true
         });
         this.db_result = result;
-        // console.log(result.rows[0]);
-        // result.row.forEach(element => {
-        //     this.cards.push(element);
-        // });
         for (let i = 0; i < result.rows.length; i++) {
-          // console.log('a');
-            // console.log(result.rows[i]);
             this.cards.push(result.rows[i]);
             this.state.push(result.rows[i].doc.active);
             this.old_state.push(result.rows[i].doc.active);
@@ -211,7 +159,6 @@ export class CardOverviewPage implements OnInit {
 
     async importOriginalCards()
     {
-        // console.log('abc');
         // comment this function if original cards should not be implemented
         // cards without decks/sets for now
 
@@ -832,7 +779,6 @@ export class CardOverviewPage implements OnInit {
         ];
 
         // turn objects into Card objects
-        // console.log(original_cards);
 
         let og_cards = [];
 
@@ -845,8 +791,6 @@ export class CardOverviewPage implements OnInit {
 
         // check if cards are in db already
 
-        console.log(this.cards);
-        // console.log(og_cards);
 
         let db = new PouchDB('local_cards');
         let add = false;
@@ -854,12 +798,8 @@ export class CardOverviewPage implements OnInit {
         if (this.cards.length > 0) {
             for (let i = 0; i < og_cards.length; i++) {
                 for (let j = 0; j < this.cards.length; j++) {
-                    // checking for matching ID would be better, consider taking a look at Card class
-                    // console.log('card not present, about to add');
     
                     if (og_cards[i].task == this.cards[j].doc.task) {
-                        // console.log(og_cards[i].task);
-                        console.log('n');
                         add = false;
                         break;
                     } else {
@@ -880,8 +820,6 @@ export class CardOverviewPage implements OnInit {
             }
         } else {
             for (let i = 0; i < og_cards.length; i++) {
-                // console.log('no card present, thus adding all');
-                // console.log('a');
                 await db.post({
                     _id: og_cards[i].id,
                     title: og_cards[i].title,
@@ -890,11 +828,6 @@ export class CardOverviewPage implements OnInit {
                     active: og_cards[i].active 
                 });
             }
-        }
-
-        
-        
+        }   
     }
-
-
 }

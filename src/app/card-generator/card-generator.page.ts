@@ -45,29 +45,22 @@ export class CardGeneratorPage implements OnInit {
 
     checkPlayerAmount()
     {
-        // console.log(this.playeramount);
+
     }
 
     showButtons()
     {
         // Variable true setzen - ngIf zeigt Buttons an
 
-        console.log(this.playeramount);
         this.playeramount_array = [];
         for(let i = 1; i <= this.playeramount; i++) {
             this.playeramount_array.push(i);
         }
-        console.log(this.playeramount_array);
-
-
 
         this.show_buttons = true;
-        // console.log(this.show_buttons);
     }
     hideButtons()
     {
-        // this.playeramount_array = [];
-        // this.show_buttons = false;
 
     }
     appendPlayername(number: number)
@@ -77,28 +70,11 @@ export class CardGeneratorPage implements OnInit {
         } else {
             this.task = 'PLAYERNAME' + number + ' ';
         }
-        // this.task += 'PLAYERNAME' + number;
-
         // refocus textarea
 
     }
     async saveCard()
     {
-        // console.log(this.task);
-
-        // check if input is valid
-
-        // if (
-        //     this.title != undefined
-        //     && this.task != undefined
-        // ) {
-        //     console.log('foi de alge');
-        // }
-
-        console.log(this.title);
-        console.log(this.playeramount);
-        console.log(this.task);
-
         // playeramount 0 equals none
 
         let card_id = uuidv4();
@@ -112,14 +88,6 @@ export class CardGeneratorPage implements OnInit {
         });
 
         this.cards.push(card);
-        // this.db.put(card);
-        // this.db.put({
-        //     test: 'abc',
-        //     alge: 'afafien'
-        // });
-        // let a = uuidv4();
-        
-        // console.log(a);
 
         // go back to card-overview
         this.router.navigate(['/card-overview']);

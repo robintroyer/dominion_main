@@ -39,24 +39,20 @@ export class DeckGeneratorPage implements OnInit {
         let result = await this.local_cards.allDocs({
             include_docs: true
         });
-        console.log(result);
 
         for (let i = 0; i < result.rows.length; i++) {
             this.cards.push(result.rows[i]);
         }
-        console.log(this.cards);
 
         
     }
     selectChanged()
     {
-        console.log(this.selected_cards);
     }
     async saveDeck()
     {
         let deck_id = uuidv4();
         let deck = new Deck(this.title, this.selected_cards, 1, deck_id);
-        console.log(deck);
         this.local_decks.post({
             _id: deck_id,
             title: this.title,

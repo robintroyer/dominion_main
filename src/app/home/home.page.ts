@@ -96,21 +96,11 @@ export class HomePage {
                 possible_decks.push(result.rows[i].doc);
             }
         }
-        console.log(possible_decks);
         for (let i = 0; i < possible_decks.length; i++) {
             possible_cards_temp = [];
             possible_cards_temp.push(possible_decks[i].cards);
-            console.log(possible_cards_temp[0]);
-            
-            // console.log(possible_decks[0].cards[0].doc);
             for (let j = 0; j < possible_cards_temp[0].length; j++) {
-                console.log(possible_decks);
-                console.log(possible_decks[i].cards[j].doc);
-                // console.log(possible_cards_temp[0]);
-                // possible_cards.push(possible_cards_temp[0][j].doc);
-
                 // check if card is already present
-
                 if (possible_cards.indexOf(possible_cards_temp[0][j].doc) > 0) {
 
                 } else {
@@ -150,11 +140,6 @@ export class HomePage {
             }
         }
 
-        console.log(possible_cards);
-
-        console.log(possible_cards[0]);
-        console.log(possible_cards[4]);
-        // console.log(possible_cards[0]._id);
         
 
         let unique = [];
@@ -168,7 +153,6 @@ export class HomePage {
 
             for (let j = 0; j < used_ids.length; j++) {
                 if (used_ids[j] == possible_cards[i]._id) {
-                    console.log('bbbbbbbbbbbb');
                     add = 0;
                     break;
                 } else {
@@ -193,8 +177,8 @@ export class HomePage {
             //     unique.push(possible_cards[i]);
             // }
         }
-        console.log(used_ids);
-        console.log(unique);
+        // console.log(used_ids);
+        // console.log(unique);
 
         // console.log(_.random(0, 5));
 
@@ -214,7 +198,7 @@ export class HomePage {
                 possible_cards: possible_cards
             }
         }
-        console.log(players);
+        // console.log(players);
         this.router.navigate(['/game'], extras);
 
         // generate random player(s)
@@ -258,11 +242,8 @@ export class HomePage {
 
     removePlayer(playerindex)
     {
-        console.log('removing player ' + (playerindex + 1));
         this.playerLength--;
-        console.log(this.form.controls.players);
         this.form.controls.players['controls'].splice(playerindex, 1);
-        console.log(this.form.controls.players);
     }
 
 }
