@@ -66,7 +66,11 @@ const routes: Routes = [
   {
     path: 'deck-generator',
     loadChildren: () => import('./deck-generator/deck-generator.module').then( m => m.DeckGeneratorPageModule)
+  },  {
+    path: 'warning',
+    loadChildren: () => import('./warning/warning.module').then( m => m.WarningPageModule)
   },
+
 
 ];
 

@@ -41,6 +41,8 @@ export class HomePage {
 
     ionViewWillEnter()
     {
+
+        
         
         this.playersData.forEach((player, index) => {
             const control = this.formBuilder.group({
@@ -51,6 +53,12 @@ export class HomePage {
         
         
 
+    }
+
+    removeModal()
+    {
+        let modal = document.getElementById('warning');
+        modal.style.display = 'none';
     }
 
     addPlayer()
