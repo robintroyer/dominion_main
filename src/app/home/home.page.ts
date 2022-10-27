@@ -8,6 +8,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 
 import * as _ from 'lodash';
 import * as SimpleBar from 'simplebar';
+import { modalController } from '@ionic/core';
 
 @Component({
     selector: 'app-home',
@@ -91,6 +92,13 @@ export class HomePage {
         var result = await this.local_decks.allDocs({
             include_docs: true
         });
+        // console.log(result.total_rows);
+
+        // if (!result.total_rows) {
+        //     console.log("No cards selected");
+        //     return;
+        // }
+
         for (let i = 0; i < result.rows.length; i++) {
             if (result.rows[i].doc.active == 1) {
                 possible_decks.push(result.rows[i].doc);
@@ -199,6 +207,9 @@ export class HomePage {
             }
         }
         // console.log(players);
+        // console.log('mögliche Karten: ' + extras.state.possible_cards);
+        
+        // show modal if no cards are selected
         this.router.navigate(['/game'], extras);
 
         // generate random player(s)
